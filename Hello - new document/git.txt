@@ -1,0 +1,21 @@
+1) git config --global user.name "ваше имя"  - настройка имени
+2) git config --global user.email адрес  - настройка электронки
+
+git status - проверка статуса
+
+
+в папке, в которой хотим установить локальный репозиторий (cmd) 
+в консоле вводим:
+3) git init (создается скрытая папка .git)
+
+4) git add README.md  - если хотим добавить документ при репоз.
+
+5) git add имя-файла (начать его писать, затем нажать Tab
+и консоль сама предложит вам продолжение пути к файлу) - добавление
+ git add -A
+ git add --all  (либо add *.c)
+
+6) git commit -m "ваше сообщение first commit" - коммитим изменения
+
+7) git remote add origin https://github.com/kolosmarina/Course1.git
+git push -u origin master

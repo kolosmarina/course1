@@ -1,6 +1,7 @@
 package edu.lesson5.homework5;
 
 public class Task2RomanNumerals {
+    
     public static void main(String[] args) {
         char[] romanNumerals = {'I', 'V', 'X', 'L', 'C', 'D', 'M'};
         int[] arabicNumerals = {1, 5, 10, 50, 100, 500, 1000};

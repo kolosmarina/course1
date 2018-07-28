@@ -4,10 +4,10 @@ import java.util.Comparator;
 
 public class ComplexComparator implements Comparator<Student> {
 
-    NameComparator nameComparator = new NameComparator();
-    SurnameComparator surnameComparator = new SurnameComparator();
-    AgeComparator ageComparator = new AgeComparator();
-    AnnualAverageMarkComparator annualAverageMarkComparator = new AnnualAverageMarkComparator();
+    private NameComparator nameComparator = new NameComparator();
+    private SurnameComparator surnameComparator = new SurnameComparator();
+    private AgeComparator ageComparator = new AgeComparator();
+    private AnnualAverageMarkComparator annualAverageMarkComparator = new AnnualAverageMarkComparator();
 
     @Override
     public int compare(Student o1, Student o2) {

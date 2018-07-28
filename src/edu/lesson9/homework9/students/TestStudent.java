@@ -6,17 +6,14 @@ public class TestStudent {
 
     public static void main(String[] args) {
         List<Student> students = Arrays.asList(
-                new Student("Иванов", "Иван", 25, 9.1),
-                new Student("Сидоров", "Андрей", 22, 9.7),
-                new Student("Сидорова", "Ольга", 22, 9.8),
-                new Student("Сидоров", "Андрей", 25, 9.1),
-                new Student("Иванов", "Иван", 25, 9.9)
+                new Student("Иван", "Иванов", 25, 9.1),
+                new Student("Сергей", "Сидоров", 22, 9.7),
+                new Student("Иван", "Савченко", 23, 9.8),
+                new Student("Сергей", "Сидоров", 22, 9.1),
+                new Student("Никита", "Ткач", 24, 9.9)
         );
 
         print(students);
-        System.out.println();
-
-        lookForMaxAnnualAverageMark(students);
         System.out.println();
 
         students.sort(new SurnameComparator());
@@ -40,23 +37,28 @@ public class TestStudent {
         System.out.println();
 
         students.sort(
-                Comparator.comparing(Student::getSurname)
-                        .thenComparing(Student::getName)
+                Comparator.comparing(Student::getName)
+                        .thenComparing(Student::getSurname)
                         .thenComparing(Student::getAge)
                         .thenComparing(Student::getAnnualAverageMark)
         );
         print(students);
     }
 
-    private static void lookForMaxAnnualAverageMark(List<Student> students) {
+    private static List<Student> lookForStudentWithMaxAnnualAverageMark(List<Student> students) {
+        //List<Student> studentsMaxMark = new ArrayList<>();
         Iterator<Student> iterator = students.iterator();
         Student maxAnnualAverageMark = iterator.next();
         while (iterator.hasNext()) {
             Student current = iterator.next();
-            maxAnnualAverageMark = (current.getAnnualAverageMark() > maxAnnualAverageMark.getAnnualAverageMark())
-                    ? current : maxAnnualAverageMark;
+            if (current.getAnnualAverageMark() > maxAnnualAverageMark.getAnnualAverageMark()) {
+                maxAnnualAverageMark = current;
+            }
+            // maxAnnualAverageMark = (current.getAnnualAverageMark() > maxAnnualAverageMark.getAnnualAverageMark())
+            //  ? current : maxAnnualAverageMark;
+            students.add(current);
         }
-        System.out.println("Ученик с самым высоким средним баллом " + maxAnnualAverageMark);
+        return students;
     }
 
     public static void print(List<Student> students) {

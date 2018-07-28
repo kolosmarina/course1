@@ -15,8 +15,8 @@ public class Ellipse extends ClosedCenterBased {
     public double calculatePerimeter() {
         BigDecimal thisRadius = new BigDecimal(radius);
         BigDecimal thisSecondRadius = new BigDecimal(secondRadius);
-        return (new BigDecimal(4)).multiply((new BigDecimal(Math.PI)).multiply(thisRadius).multiply(thisSecondRadius)
-                .add(thisRadius.subtract(thisSecondRadius).pow(2)))
+        return (new BigDecimal(4)).multiply((new BigDecimal(Math.PI)).multiply(thisRadius)
+                .multiply(thisSecondRadius).add(thisRadius.subtract(thisSecondRadius).pow(2)))
                 .divide(thisRadius.add(thisSecondRadius), 2, RoundingMode.HALF_EVEN).doubleValue();
     }
 

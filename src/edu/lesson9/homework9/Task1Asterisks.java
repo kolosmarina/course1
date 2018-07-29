@@ -34,3 +34,4 @@ public class Task1Asterisks {
         }
     }
 }
+

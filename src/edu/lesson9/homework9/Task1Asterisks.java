@@ -17,12 +17,12 @@ public class Task1Asterisks {
         words.add("Java");
         words.add("programmer");
 
-        addFourAsterisks(words);
+        markLength4(words);
 
         System.out.println(words.toString());
     }
 
-    private static void addFourAsterisks(List<String> words) {
+    private static void markLength4(List<String> words) {
         int i = 0;
         while (i < words.size()) {
             if (words.get(i).length() == 4) {

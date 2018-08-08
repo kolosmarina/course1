@@ -7,20 +7,15 @@ public class Garage {
     private Map<Car, Integer> equalCarCounts = new HashMap<>();
 
     public void park(Car car) {
-        Integer count = equalCarCounts.get(car);
-        if (count != null) {
-            count += 1;
-        } else {
-            count = 1;
-        }
-        equalCarCounts.put(car, count);
+        Integer count = equalCarCounts.getOrDefault(car, 0);
+        equalCarCounts.put(car, count + 1);
     }
 
     public void leave(Car car) {
-        Integer count = equalCarCounts.get(car);
-        if (count != null && count > 1) {
+        Integer count = equalCarCounts.getOrDefault(car, 0);
+        if (count > 1) {
             equalCarCounts.put(car, count - 1);
-        } else if (count != null) {
+        } else {
             equalCarCounts.remove(car);
         }
     }

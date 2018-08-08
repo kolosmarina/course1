@@ -21,6 +21,7 @@ public class Task2Demo {
         SpecialPurposeCar specialPurposeCar1 = new SpecialPurposeCar("MAN", "TGA26", 2017, "HH-9865", Fuel.DIESEL, "yellow", Industry.AMBULANCE);
         SpecialPurposeCar specialPurposeCar2 = new SpecialPurposeCar("MAN", "TGA26", 2017, "HH-9865", Fuel.DIESEL, "black", Industry.COMMUNAL);
         SpecialPurposeCar specialPurposeCar3 = new SpecialPurposeCar("MAN", "TGA26", 2012, "HH-9865", Fuel.DIESEL, "yellow", Industry.AMBULANCE);
+
         System.out.println(specialPurposeCar1);
         System.out.println();
 

@@ -22,27 +22,29 @@ public class Helper implements Runnable {
         String name = Thread.currentThread().getName();
         System.out.println(name + " запустился поток ");
         while (!GameCycle.isGameFinished()) {
-            synchronized (GameCycle.night) {
+            synchronized (GameCycle.getNIGHT()) {
                 try {
                     System.out.println(name + " ожидает...");
-                    GameCycle.night.wait();
+                    GameCycle.getNIGHT().wait();
                     System.out.println(name + " дождался");
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
                 int numberOfParts = random.nextInt(MAX_PARTS_AMOUNT);
                 List<RobotParts> foundParts = new ArrayList<>(MAX_PARTS_AMOUNT);
-                for (int i = 0; i <= numberOfParts; i++) {
-                    RobotParts robotPart;
-                    synchronized (dump) {
+                synchronized (dump) {
+                    for (int i = 0; i <= numberOfParts; i++) {
+                        RobotParts robotPart;
                         robotPart = dump.poll();
+                        if (robotPart != null) {
+                            foundParts.add(robotPart);
+                        } else {
+                            break;
+                        }
                     }
-                    if (robotPart != null) {
-                        foundParts.add(robotPart);
-                    }
+                    System.out.println(name + " отдал " + foundParts);
+                    scientist.takeOff(foundParts);
                 }
-                System.out.println(name + " отдал " + foundParts);
-                scientist.takeOff(foundParts);
             }
         }
     }

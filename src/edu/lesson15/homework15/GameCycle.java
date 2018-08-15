@@ -1,8 +1,11 @@
 package edu.lesson15.homework15;
 
+import lombok.Getter;
+
 public class GameCycle {
 
-    public final static Object night = new Object();
+    @Getter
+    private final static Object NIGHT = new Object();
     private static int nightCounter;
     private static final int TOTAL_NIGHT_COUNTER = 100;
     private static final int DAY_LENGTH = 100;
@@ -20,8 +23,8 @@ public class GameCycle {
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-            synchronized (night) {
-                night.notifyAll();
+            synchronized (NIGHT) {
+                NIGHT.notifyAll();
             }
         }
     }

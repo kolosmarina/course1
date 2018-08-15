@@ -5,7 +5,7 @@ import java.util.Set;
 
 public class Robot {
 
-    private static final int AMOUNT_COMPLETE_ROBOT_PARTS = 9;
+    private static final int AMOUNT_COMPLETE_ROBOT_PARTS = RobotParts.values().length;
     private Set<RobotParts> parts = new HashSet<>();
 
     public Robot(RobotParts part) {

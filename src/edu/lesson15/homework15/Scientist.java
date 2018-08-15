@@ -21,6 +21,7 @@ public class Scientist implements Runnable {
         System.out.println(name + " запустился поток ");
         while (!GameCycle.isGameFinished()) {
             constructRobot();
+
         }
     }
 

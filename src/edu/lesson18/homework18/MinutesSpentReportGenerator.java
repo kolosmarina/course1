@@ -2,7 +2,6 @@ package edu.lesson18.homework18;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -38,6 +37,7 @@ public class MinutesSpentReportGenerator implements ReportGenerator {
                     default:
                         lectureMinutes += activityEntry.getValue();
                         lecturesList.add(getActivityLine(activityEntry.getKey(), activityEntry.getValue(), dayLength));
+                        break;
                 }
             }
             report.add(getActivityLine(LECTURES, lectureMinutes, dayLength));
@@ -52,7 +52,21 @@ public class MinutesSpentReportGenerator implements ReportGenerator {
     private Map<String, Integer> getActivityMap(Map<String, String> parsedDay) {
         Map<String, Integer> activityMinutesMap = new HashMap<>();
         Map.Entry<String, String> previousEntry = null;
-        Iterator<Map.Entry<String, String>> iterator = parsedDay.entrySet().iterator();
+        String startDay = null;
+        String endDay = null;
+        for (Map.Entry<String, String> entry : parsedDay.entrySet()) {
+            if (previousEntry == null) {
+                previousEntry = entry;
+                startDay = entry.getKey();
+                continue;
+            }
+            endDay = entry.getKey();
+            Integer minutes = calculateMinutes(entry.getKey(), previousEntry.getKey());
+            activityMinutesMap.compute(previousEntry.getValue(), (k, v) -> v == null ? minutes : v + minutes);
+            previousEntry = entry;
+        }
+
+        /*Iterator<Map.Entry<String, String>> iterator = parsedDay.entrySet().iterator();
         String startDay = null;
         String endDay = null;
         while (iterator.hasNext()) {
@@ -66,7 +80,8 @@ public class MinutesSpentReportGenerator implements ReportGenerator {
             Integer minutes = calculateMinutes(currentEntry.getKey(), previousEntry.getKey());
             activityMinutesMap.compute(previousEntry.getValue(), (k, v) -> v == null ? minutes : v + minutes);
             previousEntry = currentEntry;
-        }
+        }*/
+
         dayLength = calculateMinutes(endDay, startDay);
         return activityMinutesMap;
     }

@@ -16,6 +16,7 @@ public class FileParseUtil {
 
     private static final String END = "Конец";
     private static final String EMPTY_LINE = "";
+    private static final String REGEX = "(^\\d{2}:\\d{2})\\s*(.*)$";
 
     private FileParseUtil() {
     }
@@ -27,14 +28,14 @@ public class FileParseUtil {
             List<Map<String, String>> list = new ArrayList<>();
             String line;
             while ((line = reader.readLine()) != null) {
-                if (line.equals(EMPTY_LINE)) {
+                if (EMPTY_LINE.equals(line)) {
                     continue;
                 }
                 Matcher matcher = getMatcher(line);
                 while (matcher.find()) {
                     String value = matcher.group(2);
                     map.put(matcher.group(1), value);
-                    if (value.equals(END)) {
+                    if (END.equals(value)) {
                         list.add(map);
                         map = new LinkedHashMap<>();
                     }
@@ -45,8 +46,7 @@ public class FileParseUtil {
     }
 
     private static Matcher getMatcher(String line) {
-        String regex = "(^\\d{2}:\\d{2})\\s*(.*)$";
-        Pattern pattern = Pattern.compile(regex);
+        Pattern pattern = Pattern.compile(REGEX);
         return pattern.matcher(line);
     }
 }

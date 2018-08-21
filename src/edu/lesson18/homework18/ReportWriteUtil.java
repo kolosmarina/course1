@@ -1,9 +1,7 @@
 package edu.lesson18.homework18;
 
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileWriter;
 import java.io.IOException;
+import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.List;
 
@@ -12,7 +10,7 @@ public class ReportWriteUtil {
     private ReportWriteUtil() {
     }
 
-    public static void writeTo(Path path, List<String> list) throws IOException {
+    /*public static void writeTo(Path path, List<String> list) throws IOException {
         File file = path.toFile();
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(file))) {
             for (String line : list) {
@@ -20,5 +18,8 @@ public class ReportWriteUtil {
                 writer.newLine();
             }
         }
+    }*/
+    public static void writeTo(Path path, List<String> list) throws IOException {
+        Files.write(path, list);
     }
 }
